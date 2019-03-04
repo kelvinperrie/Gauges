@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-nz">
+<head>
+    <title>Some moving gauges or whatever</title>
+    <style>
+         html {
+            background-color: #757575;
+        }
+        .gauge {
+            position: relative;
+            width: 250px;
+            height: 250px;
+        }
+        .gauge img {
+            margin: auto;
+            display: block;
+            position: absolute;
+        } 
+        .pointer {
+            top: 65px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gauge1">
+    </div>
+    <div id="gauge2">
+    </div>
+    <div id="gauge3">
+    </div>
+    <script type="text/javascript" src="jquery-3.3.1.min.js" ></script>
+    <script type="text/javascript" src="jQueryRotate.js" ></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            function TwitchIt(element, settings) {
+                if(!settings.currentAngle) {
+                    settings.currentAngle = settings.targetAngle;
+                }
+                var twitchTo = getRandomInt(settings.twitchMin, settings.twitchMax);
+                // if twitchTo is the same as current then do nothing for a while
+                if(twitchTo === settings.currentAngle) {
+                    setTimeout(function() { TwitchIt(element, settings); } , settings.twitchDuration);
+                } else {
+                    $(element).children(".pointer").rotate({
+                        duration: settings.twitchDuration,
+                        angle: settings.currentAngle,
+                        animateTo: twitchTo,
+                        callback: function() { settings.currentAngle = twitchTo; TwitchIt(element, settings); },
+                        easing: function (x,t,b,c,d){ return c*(t/d)+b; }
+                    });
+                }
+            }
+
+            $.fn.gaugeMe = function(settings) {
+                var gauge = $(this);
+                $(this).addClass('gauge');
+                // add the images we need; a background and a pointer
+                $(this).prepend($('<img>',{class:'pointer',src:'images/Pointer1.png', alt:'gauge pointer'}))
+                $(this).prepend($('<img>',{class:'backing',src:'images/Backing1.png', alt:'gauge background'}))
+                // animate the pointer from 0 to the target angle, then start it twitching
+                $(this).children(".pointer").rotate({
+                    duration: settings.initialAnimationDuration,
+                    angle: settings.startAngle,
+                    animateTo: settings.targetAngle,
+                    callback: function() { 
+                        TwitchIt(gauge, settings); 
+                    }
+                });
+            };
+
+            $("#gauge1").gaugeMe({
+                startAngle : -90,
+                targetAngle : 45,
+                initialAnimationDuration : 2000,
+                twitchMin : 42,
+                twitchMax : 48,
+                twitchDuration : 200
+            });
+            $("#gauge2").gaugeMe({
+                startAngle : -90,
+                targetAngle : -10,
+                initialAnimationDuration : 1000,
+                twitchMin : -15,
+                twitchMax : -20,
+                twitchDuration : 200
+            });
+            $("#gauge3").gaugeMe({
+                startAngle : -90,
+                targetAngle : 90,
+                initialAnimationDuration : 2000,
+                twitchMin : 85,
+                twitchMax : 90,
+                twitchDuration : 200
+            });
+
+        });
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+</body>
+</html>
