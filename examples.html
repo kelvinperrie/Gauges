@@ -31,7 +31,7 @@
             <tr><td>pointerImage</td><td>none</td><td>specifies the image to use for the pointer image (the arrow), if set takes precedence over gaugeType.</td></tr>
             <tr><td>twitchDuration</td><td>200</td><td>time taken for the twitching of the pointer to move to a new angle.</td></tr>
             <tr><td>initialAnimationDuration</td><td>2000</td><td>time taken when the gauge is shown for the pointer to move to the start angle.</td></tr>
-            <tr><td>pointerVerticalOffset</td><td>varies</td><td>allows the pointer image to be positioned vertically. Is set by default when using a gaugeType, other must be set to something like '30px'</td></tr>
+            <tr><td>pointerVerticalOffset</td><td>varies</td><td>allows the pointer image to be positioned vertically. Is set by default when using a gaugeType, otherwise must be set to something like '30px'</td></tr>
         </tbody>
     </table>
 <br/>
@@ -153,8 +153,8 @@ $("#gauge4").gaugeMe({
                 twitchMax : 115
             });
             $("#gauge4").gaugeMe({
-                backingImage : "backing4",
-                pointerImage : "pointer1",
+                backingImage : "Backing4",
+                pointerImage : "Pointer1",
                 startAngle : -120,
                 targetAngle : 30,
                 twitchMin : 40,
