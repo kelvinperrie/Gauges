@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-nz">
+<head>
+    <title>Some moving gauges or whatever</title>
+    <style>
+         html {
+            background-color: #757575;
+        }
+        td {
+            border: 1px #000 solid;
+        }
+        thead td {
+            background-color: #fff;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="gauges.css">
+</head>
+<body>
+<br/>
+    Options: 
+    <table>
+        <thead>
+            <td>option</td><td>default</td><td>description</td>
+        </thead>
+        <tbody>
+            <tr><td>gaugeType</td><td>1</td><td>either 1, 2 or 3. Determines the images used.</td></tr>
+            <tr><td>targetAngle</td><td>none - must be set</td><td>the angle that the pointer will animate too when page first loaded.</td></tr>
+            <tr><td>twitchMin</td><td>none - must be set</td><td>when the gauge twitches this is the min value it can twitch too.</td></tr>
+            <tr><td>twitchMax</td><td>none - must be set</td><td>when the gauge twitches this is the max value it can twitch too.</td></tr>
+            <tr><td>backingImage</td><td>none</td><td>specifies the image to use for the backing image (the actual gauge image), if set takes precedence over gaugeType.</td></tr>
+            <tr><td>pointerImage</td><td>none</td><td>specifies the image to use for the pointer image (the arrow), if set takes precedence over gaugeType.</td></tr>
+            <tr><td>twitchDuration</td><td>200</td><td>time taken for the twitching of the pointer to move to a new angle.</td></tr>
+            <tr><td>initialAnimationDuration</td><td>2000</td><td>time taken when the gauge is shown for the pointer to move to the start angle.</td></tr>
+            <tr><td>pointerVerticalOffset</td><td>varies</td><td>allows the pointer image to be positioned vertically. Is set by default when using a gaugeType, other must be set to something like '30px'</td></tr>
+        </tbody>
+    </table>
+<br/>
+    Examples:
+    <table>
+        <thead>
+            <tr>
+                <td>#</td><td>description</td><td>code</td><td>result</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>using default gauge (gaugeType = 1)</td>
+                <td>
+                    <pre>
+&lt;div id="gauge1">&lt;/div>    
+                    </pre>
+                    <pre>
+$("#gauge1").gaugeMe({
+    targetAngle : 90,
+    twitchMin : 85,
+    twitchMax : 90
+});
+                    </pre>
+                </td>
+                <td>
+                    <div id="gauge1"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>using gaugeType = 2, longer than default twitch duraction (twitches are slower)</td>
+                <td>
+                    <pre>
+&lt;div id="gauge2">&lt;/div>    
+                    </pre>
+                    <pre>
+$("#gauge2").gaugeMe({
+    gaugeType : 2,
+    targetAngle : 45,
+    twitchMin : 30,
+    twitchMax : 60,
+    twitchDuration : 400
+});
+                    </pre>
+                </td>
+                <td>
+                    <div id="gauge2"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>using gaugeType = 3</td>
+                <td>
+                    <pre>
+&lt;div id="gauge3">&lt;/div>    
+                    </pre>
+                    <pre>
+$("#gauge3").gaugeMe({
+    gaugeType : 3,
+    targetAngle : 100,
+    twitchMin : 85,
+    twitchMax : 115
+});
+                    </pre>
+                </td>
+                <td>
+                    <div id="gauge3"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>explicitly setting the pointer and backing image and setting the start angel of the pointer, moving the pointer slightly to center it vertically</td>
+                <td>
+                    <pre>
+&lt;div id="gauge4">&lt;/div>    
+                    </pre>
+                    <pre>
+$("#gauge4").gaugeMe({
+    backingImage : "backing4",
+    pointerImage : "pointer1",
+    startAngle : -120,
+    targetAngle : 30,
+    twitchMin : 40,
+    twitchMax : 20,
+    pointerVerticalOffset : '20px'
+});
+                    </pre>
+                </td>
+                <td>
+                    <div id="gauge4"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript" src="jquery-3.3.1.min.js" ></script>
+    <script type="text/javascript" src="jQueryRotate.js" ></script>
+    <script type="text/javascript" src="gauges.js" ></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#gauge1").gaugeMe({
+                targetAngle : 90,
+                twitchMin : 85,
+                twitchMax : 90
+            });
+            $("#gauge2").gaugeMe({
+                gaugeType : 2,
+                targetAngle : 45,
+                twitchMin : 30,
+                twitchMax : 60,
+                twitchDuration : 400
+            });
+            $("#gauge3").gaugeMe({
+                gaugeType : 3,
+                targetAngle : 100,
+                twitchMin : 85,
+                twitchMax : 115
+            });
+            $("#gauge4").gaugeMe({
+                backingImage : "backing4",
+                pointerImage : "pointer1",
+                startAngle : -120,
+                targetAngle : 30,
+                twitchMin : 40,
+                twitchMax : 20,
+                pointerVerticalOffset : '20px'
+            });
+
+        });
+
+    </script>
+</body>
+</html>
