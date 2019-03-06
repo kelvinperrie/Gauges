@@ -11,7 +11,7 @@ Example 2:
 
 # usage
 
-Copy the images folder and include gauges.js and gauges.css on the page. Then call the gaugeMe function on an element, setting the twitch min and max to something just a bit lower and higher than the target angle.
+Copy the images folder and include gauges.js and gauges.css on the page. Then call the gaugeMe function on an element. Pass in the targetAngle, which is the angle that the pointer will animate too. A targetAngle of 0 will have the point straight up, 90 will have it pointing to the right, -90 to the left etc. Also set the twitch min and max to something just a bit lower and higher than the target angle - these are the values that the pointer will oscillate randomly between.
 
 ```
     <link rel="stylesheet" href="gauges.css">
