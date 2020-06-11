@@ -24,7 +24,7 @@ Copy the images folder and include gauges.js and gauges.css on the page. Then ca
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#myGauge").gaugeMe({
+            var myGauge = $("#myGauge").gaugeMe({
               targetAngle : 60,
               twitchMin : 55,
               twitchMax : 65
@@ -32,6 +32,10 @@ Copy the images folder and include gauges.js and gauges.css on the page. Then ca
         })
     </script>
 ```
+Update the pointer position/angle by using the UpdateTargetAngle method
 
+```
+myGauge.UpdateTargetAngle(newTargetAngle, newTwitchMin, newTwitchMax);
+```
 
 To see available options that can be passed to configure a gauge and see more examples on how to use the code see http://htmlpreview.github.io/?https://github.com/kelvinperrie/Gauges/blob/master/examples.html
