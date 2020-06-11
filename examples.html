@@ -126,6 +126,39 @@ $("#gauge4").gaugeMe({
                     <div id="gauge4"></div>
                 </td>
             </tr>
+            <tr>
+                <td>5</td>
+                <td>creating a gauge, then moving the pointer to a new angle as required</td>
+                <td>
+                    <pre>
+&lt;div id="gauge5">&lt;/div>    
+                    </pre>
+                    <pre>
+var gauge5 = $("#gauge5").gaugeMe({
+    targetAngle : 0,
+    twitchMin : -5,
+    twitchMax : 5
+});
+
+setTimeout(function(){ 
+    lowerGauge5();
+}, 3000);
+
+// raise and then lower the pointer every 5 seconds
+function lowerGauge5() {
+    gauge5.UpdateTargetAngle(45, 40, 50);
+    setTimeout(function(){ raiseGauge5(); }, 5000);
+};
+function raiseGauge5() {
+    gauge5.UpdateTargetAngle(-45, -50, -40);
+    setTimeout(function(){ lowerGauge5();}, 5000);
+};
+                    </pre>
+                </td>
+                <td>
+                    <div id="gauge5"></div>
+                </td>
+            </tr>
         </tbody>
     </table>
     <script type="text/javascript" src="jquery-3.3.1.min.js" ></script>
@@ -161,6 +194,30 @@ $("#gauge4").gaugeMe({
                 twitchMax : 20,
                 pointerVerticalOffset : '20px'
             });
+
+            var gauge5 = $("#gauge5").gaugeMe({
+                targetAngle : 0,
+                twitchMin : -5,
+                twitchMax : 5
+            });
+
+
+            setTimeout(function(){ 
+                lowerGauge5();
+            }, 3000);
+
+            function lowerGauge5() {
+                gauge5.UpdateTargetAngle(45, 40, 50);
+                setTimeout(function(){ 
+                    raiseGauge5();
+                }, 5000);
+            };
+            function raiseGauge5() {
+                gauge5.UpdateTargetAngle(-45, -50, -40);
+                setTimeout(function(){ 
+                    lowerGauge5();
+                }, 5000);
+            };
 
         });
 
