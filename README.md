@@ -38,4 +38,4 @@ Update the pointer position/angle by using the UpdateTargetAngle method
 myGauge.UpdateTargetAngle(newTargetAngle, newTwitchMin, newTwitchMax);
 ```
 
-To see available options that can be passed to configure a gauge and see more examples on how to use the code see http://htmlpreview.github.io/?https://github.com/kelvinperrie/Gauges/blob/master/examples.html
+To see available options that can be passed to configure a gauge and see more examples on how to use the code see https://gauges.netlify.app/examples.html
